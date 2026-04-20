@@ -1,0 +1,163 @@
+export const PIPELINE_STEPS = [
+  {
+    id: 'script',
+    label: '生成劇本',
+    sublabel: 'LLM 課綱引擎',
+    kpi: '≤15秒',
+    duration: 3500,
+    icon: 'FileText',
+    color: '#0ea5e9',
+    mockOutput: {
+      type: 'script',
+      data: {
+        topic: '',
+        segments: [
+          {
+            index: 1,
+            title: '引入主題',
+            narration: '同學們，你們知道植物是怎麼製造自己的食物嗎？今天我們要來認識一個神奇的過程——光合作用！',
+            scene: '課堂黑板，老師指向葉子圖片，陽光從窗戶照入',
+            duration: '30秒',
+          },
+          {
+            index: 2,
+            title: '光合作用的原料',
+            narration: '光合作用需要三樣東西：二氧化碳、水，還有最重要的太陽光。植物的葉子裡有一種叫做「葉綠素」的物質，它就是光合作用的魔法師！',
+            scene: '動畫展示葉子截面，葉綠體發光，二氧化碳分子進入',
+            duration: '45秒',
+          },
+          {
+            index: 3,
+            title: '光合作用的過程',
+            narration: '葉子吸收太陽光後，會把二氧化碳和水轉化成葡萄糖和氧氣。葡萄糖是植物的養分，而氧氣則釋放到空氣中，讓我們可以呼吸！',
+            scene: '化學反應動畫：6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂',
+            duration: '50秒',
+          },
+          {
+            index: 4,
+            title: '總結與複習',
+            narration: '今天我們學到了，光合作用是植物利用陽光、二氧化碳和水，製造葡萄糖和氧氣的過程。記住這個重要的公式，它是地球生命的基礎！',
+            scene: '老師面對學生總結，黑板上寫著重點公式',
+            duration: '35秒',
+          },
+        ],
+      },
+    },
+  },
+  {
+    id: 'storyboard',
+    label: '分鏡圖像',
+    sublabel: 'T2I 文生圖',
+    kpi: '≤5秒/張',
+    duration: 2200,
+    icon: 'Image',
+    color: '#8b5cf6',
+    mockOutput: {
+      type: 'storyboard',
+      data: {
+        images: [
+          { index: 1, gradient: 'from-blue-900 to-indigo-800', desc: '課堂場景：黑板與陽光' },
+          { index: 2, gradient: 'from-green-900 to-teal-800', desc: '葉子截面動畫，葉綠體' },
+          { index: 3, gradient: 'from-purple-900 to-blue-800', desc: '化學反應分子動畫' },
+          { index: 4, gradient: 'from-orange-900 to-red-800', desc: '老師總結，重點板書' },
+        ],
+      },
+    },
+  },
+  {
+    id: 'tts',
+    label: 'TTS 旁白',
+    sublabel: 'VoxCPM2 語音合成',
+    kpi: '≤10秒',
+    duration: 2800,
+    icon: 'Mic',
+    color: '#06b6d4',
+    mockOutput: {
+      type: 'tts',
+      data: {
+        voice: '指導教授聲音克隆',
+        model: 'VoxCPM2',
+        sampleRate: '48kHz',
+        totalDuration: '2分40秒',
+        segments: 4,
+      },
+    },
+  },
+  {
+    id: 'i2v',
+    label: '影片生成',
+    sublabel: 'Wan 2.2 I2V-A14B',
+    kpi: '≤60秒/段',
+    duration: 7500,
+    icon: 'Video',
+    color: '#f59e0b',
+    mockOutput: {
+      type: 'i2v',
+      data: {
+        clips: [
+          { index: 1, gradient: 'from-blue-900 to-cyan-800', label: '片段 1', duration: '30s' },
+          { index: 2, gradient: 'from-green-900 to-emerald-800', label: '片段 2', duration: '45s' },
+          { index: 3, gradient: 'from-purple-900 to-violet-800', label: '片段 3', duration: '50s' },
+          { index: 4, gradient: 'from-orange-900 to-amber-800', label: '片段 4', duration: '35s' },
+        ],
+      },
+    },
+  },
+  {
+    id: 'lipsync',
+    label: 'Lip Sync',
+    sublabel: 'MuseTalk 嘴型同步',
+    kpi: '~20秒',
+    duration: 4500,
+    icon: 'UserCheck',
+    color: '#ec4899',
+    mockOutput: {
+      type: 'lipsync',
+      data: {
+        model: 'MuseTalk',
+        fps: '30+ FPS',
+        before: 'from-gray-800 to-gray-700',
+        after: 'from-pink-900 to-rose-800',
+      },
+    },
+  },
+  {
+    id: 'subtitle',
+    label: '字幕生成',
+    sublabel: 'Whisper-v3 Large',
+    kpi: '~5秒',
+    duration: 1800,
+    icon: 'Captions',
+    color: '#10b981',
+    mockOutput: {
+      type: 'subtitle',
+      data: {
+        lines: [
+          { time: '00:00:02,500', text: '同學們，你們知道植物是怎麼製造自己的食物嗎？' },
+          { time: '00:00:06,800', text: '今天我們要來認識一個神奇的過程——光合作用！' },
+          { time: '00:00:12,100', text: '光合作用需要三樣東西：二氧化碳、水，還有太陽光。' },
+          { time: '00:00:18,400', text: '植物的葉子裡有一種叫做「葉綠素」的物質…' },
+        ],
+      },
+    },
+  },
+  {
+    id: 'export',
+    label: '合成 MP4',
+    sublabel: 'MoviePy + FFmpeg',
+    kpi: '~10秒',
+    duration: 2500,
+    icon: 'Film',
+    color: '#f97316',
+    mockOutput: {
+      type: 'export',
+      data: {
+        resolution: '1920×1080',
+        fps: '30fps',
+        codec: 'H.264 / AAC',
+        fileSize: '~85 MB',
+        duration: '2分40秒',
+      },
+    },
+  },
+]
